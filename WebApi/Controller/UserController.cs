@@ -6,7 +6,7 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController : ControllerBase
+public class UserController
 {
     private readonly IUserservice _service;
 
@@ -15,59 +15,38 @@ public class UserController : ControllerBase
         _service = service;
     }
 
-    // GET: api/user
+   
     [HttpGet]
-    public async Task<ActionResult<List<UserDto>>> GetAll()
+    public async Task<List<UserDto>> GetAll()
     {
-        var result = await _service.GetAllAsync();
-        return Ok(result);
+        return await _service.GetAllAsync();
     }
 
-    // GET: api/user/{id}
+   
     [HttpGet("{id}")]
-    public async Task<ActionResult<UserDto?>> GetById(int id)
+    public async Task<UserDto?> GetById(int id)
     {
-        var result = await _service.GetByIdAsync(id);
-
-        if (result == null)
-            return NotFound("User not found");
-
-        return Ok(result);
+        return await _service.GetByIdAsync(id);
     }
 
     // POST: api/user
     [HttpPost]
-    public async Task<IActionResult> Create(CreateUserDto dto)
+    public async Task<int> Create(CreateUserDto dto)
     {
-        var result = await _service.CreateAsync(dto);
-
-        if (result == 0)
-            return BadRequest("User not created");
-
-        return Ok(new { Id = result, Message = "User created successfully" });
+        return await _service.CreateAsync(dto);
     }
 
-    // PUT: api/user/{id}
+  
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, UpdateUserDto dto)
+    public async Task<bool> Update(int id, UpdateUserDto dto)
     {
-        var result = await _service.UpdateAsync(id, dto);
-
-        if (!result)
-            return BadRequest("User not updated");
-
-        return Ok("User updated successfully");
+        return await _service.UpdateAsync(id, dto);
     }
 
-    // DELETE: api/user/{id}
+    
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<bool> Delete(int id)
     {
-        var result = await _service.DeleteAsync(id);
-
-        if (!result)
-            return NotFound("User not found");
-
-        return Ok("User deleted successfully");
+        return await _service.DeleteAsync(id);
     }
 }
