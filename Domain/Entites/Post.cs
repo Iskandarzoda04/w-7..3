@@ -13,7 +13,7 @@ public class Post
      public DateTime CreatedAt {get; set;}
     public int UserId {get; set;}
     public User User {get; set;} = null!;
-     public List<Comment> Comments { get; set; } =null!;
+     public List<Comment> Comments { get; set; } =[];
 
 }
 

@@ -23,7 +23,10 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
         
         builder.Property(p => p.UserId)
             .IsRequired();
+            
 
+        builder.Property(p => p.CreatedAt)
+            .IsRequired();
 
               builder.HasOne(p => p.User)
             .WithMany(u => u.Posts)

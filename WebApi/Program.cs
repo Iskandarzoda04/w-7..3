@@ -21,6 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
  builder.Services.AddScoped<IUserservice, UserService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IUserAnalyticsService, UserAnalyticalService>();
 
 var app = builder.Build();
 

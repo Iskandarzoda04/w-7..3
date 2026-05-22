@@ -36,11 +36,6 @@ public class PostService(AppDbContext context, ILogger<PostService> logger) : IP
             }
 
             
-           
-            
-                _logger.LogWarning("User not found");
-                return 0;
-            
 
             var post = new Post
             {

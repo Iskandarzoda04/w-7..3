@@ -26,6 +26,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Bio)
             .HasMaxLength(200);
 
+            builder.Property(u => u.JoinDate)
+            .IsRequired();
+
+
      
         builder.HasMany(u => u.Posts)
             .WithOne(p => p.User)

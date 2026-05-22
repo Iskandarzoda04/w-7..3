@@ -34,14 +34,7 @@ public class CommentService(AppDbContext context, ILogger<CommentService> logger
                 return 0;
             }
 
-            var userExists = await _context.Users.AnyAsync(u => u.Id == dto.UserId);
-            var postExists = await _context.Posts.AnyAsync(p => p.Id == dto.PostId);
-
-            if (!userExists || !postExists)
-            {
-                _logger.LogWarning("User or Post not found");
-                return 0;
-            }
+        
 
             var comment = new Comment
             {
